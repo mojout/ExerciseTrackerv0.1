@@ -8,7 +8,7 @@ from rest_framework import serializers
 class PatientSerializer(serializers.ModelSerializer):
     class Meta:
         model = Patient
-        fields = ['user', 'first_name', 'last_name', 'email', 'phone']
+        fields = ['first_name', 'last_name', 'email', 'phone']
 
 
 class DoctorSerializer(serializers.ModelSerializer):
@@ -27,8 +27,12 @@ class ExerciseSerializer(WritableNestedModelSerializer, serializers.ModelSeriali
     patient = PatientSerializer()
     doctor = DoctorSerializer()
     plan = PlanSerializer()
+    exercise_price_with_discount = serializers.SerializerMethodField()
+
+    def get_exercise_price_with_discount(self, instance):
+        return instance.exercise_price_with_discount
 
     class Meta:
         model = Exercise
         fields = ['id', 'title', 'execute_date', 'specialization', 'periodicity',
-                  'patient', 'doctor', 'plan']
+                  'patient', 'doctor', 'plan', 'exercise_price_with_discount']
