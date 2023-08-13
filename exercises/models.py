@@ -13,7 +13,7 @@ class Doctor(models.Model):
 
 class Patient(models.Model):
     first_name = models.CharField(max_length=50)
-    last_name = models.CharField(max_length=50)
+    last_name = models.CharField(max_length=50, null=False)
     email = models.EmailField(max_length=50, blank=True)
     phone = models.CharField(max_length=12, blank=True)
 
