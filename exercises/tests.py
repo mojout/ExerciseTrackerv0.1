@@ -24,7 +24,7 @@ class BaseTestCase(ExerciseApiTestCase):
         super().setUp()
 
     def test_get_list(self):
-        url = reverse('exercise-list')
+        url = reverse('exercise-list') # not exercises-list
         response = self.client.get(url)
         self.assertEqual(status.HTTP_200_OK, response.status_code)
 
